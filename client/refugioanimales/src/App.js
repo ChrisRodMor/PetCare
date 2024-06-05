@@ -1,11 +1,12 @@
-import { Button } from "react-bootstrap";
 import './App.css';
+import Register from './Register';
+import Login from './Login';
 
 function App() {
   return (
     <div className="App">
-      <h1>hola</h1>
-      <Button>Primary</Button>
+      <Login/>
+      <Register/>
     </div>
   );
 }
