@@ -1,0 +1,7 @@
+.nav-link {
+    color: grey; /* Cambiar el color por defecto a gris */
+}
+  
+.nav-link:hover{
+  color: #FFC107; /* Cambiar el color al pasar el mouse a amarillo, cuando está presionado y cuando ha sido visitado */
+}

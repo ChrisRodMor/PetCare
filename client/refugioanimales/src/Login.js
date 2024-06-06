@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import banner from './img/bannerPetCare.png';
 import './Register.css';
 
@@ -71,7 +72,7 @@ function Login(){
                                 <button type="submit" class="btn btn-warning">Aceptar</button>
 
                                 <div>
-                                    <a href="" class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">¿Aún no tienes una cuenta? Regístrate aquí</a>
+                                    <Link to = '/register' class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">¿Aún no tienes una cuenta? Regístrate aquí</Link>
                                 </div>
                         </div>
 

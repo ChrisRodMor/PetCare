@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Form, Container } from 'react-bootstrap';
 import banner from './img/bannerPetCare.png';
+import { Link } from 'react-router-dom';
 
 import './Register.css';
 
@@ -129,8 +130,8 @@ function Register() {
                         <div className="text-center mt-3">   
                                 <button type="button" class="btn btn-outline-warning btn-sm btn-block" style={{marginRight: '5%'}}>Cancelar</button>
                                 <button type="submit" class="btn btn-warning btn-sm btn-block">Aceptar</button>
-                                <div>
-                                    <a href="" class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">¿Ya tienes una cuenta? Inicia sesión aquí</a>
+                                <div style={{marginTop: '10px'}}>
+                                    <Link to = '/login' class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">¿Ya tienes una cuenta? Inicia sesión aquí</Link>
                                 </div>
                         </div>
                         
