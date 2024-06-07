@@ -1,9 +1,14 @@
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import React from 'react';
 import Register from './Register';
 import Login from './Login';
 import Inicio from './Inicio';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Adoptar from './Adoptar';
+import Reportes from './Reportes';
+import Contactanos from './Contactanos';
+import Donaciones from './Donaciones';
+import Configuracion from './Configuracion';
 
 function App() {
   return (
@@ -12,6 +17,11 @@ function App() {
         <Route path = '/' element={<Inicio/>}/>
         <Route path = '/login' element={<Login/>}/>
         <Route path = '/register' element={<Register/>}/>
+        <Route path = '/adoptar' element={<Adoptar/>}/>
+        <Route path = '/reportes' element={<Reportes/>}/>
+        <Route path = '/contactanos' element={<Contactanos/>}/>
+        <Route path = '/donaciones' element={<Donaciones/>}/>
+        <Route path = '/configuracion' element={<Configuracion/>}/>
       </Routes>
     </Router>
     
