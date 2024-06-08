@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //Autenticación
 Route::post('/register', [ClientController::class, 'store']);
-Route::post('login', [AuthController::class, 'authenticate']);
+Route::post('/login', [AuthController::class, 'authenticate']);
 
 //Ruta de prueba para obtener datos del usuario
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -19,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('clients', [ClientController::class, 'index']);
+    Route::put('update-profile', [UserController::class, 'updateProfile']);
+
 });
