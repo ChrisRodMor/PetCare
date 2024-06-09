@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Form, Container, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; // Importa Axios
 import banner from './img/bannerPetCare.png';
 import './Register.css';
 
-function Login(){
-
+function Login() {
     const [form, setForm] = useState({
         email: '',
         password: ''
     });
 
     const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,37 +25,52 @@ function Login(){
         setShowPassword(!showPassword);
     };
 
-    const toggleConfirmPasswordVisibility = () => {
-        setShowConfirmPassword(!showConfirmPassword);
-    };
+    // Configura la instancia principal de Axios
+    const axiosInstance = axios.create({
+        baseURL: 'http://127.0.0.1:8000/api',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        //withCredentials: true // Permite que Axios envíe cookies con las solicitudes
+    });
+
+    // Configura la instancia de Axios para la solicitud CSRF
+    const csrfAxiosInstance = axios.create({
+        baseURL: 'http://127.0.0.1:8000',
+        //withCredentials: true // Permite que Axios envíe cookies con las solicitudes
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await Login(form);
+            // Realiza la solicitud CSRF para inicializar la protección CSRF
+            await csrfAxiosInstance.get('/sanctum/csrf-cookie');
+            // Realiza la solicitud de inicio de sesión
+            const response = await axiosInstance.post('/login', form);
             console.log(response.data);
             // Guarda el token en el almacenamiento local o en el contexto
             localStorage.setItem('token', response.data.token);
+            // Redirige a otra página, actualiza el estado de tu aplicación, etc.
+            // Por ejemplo, podrías redirigir al usuario a su página de perfil
+            // history.push('/perfil');
         } catch (error) {
             console.error(error.response.data);
         }
     };
 
-    return(
+    return (
         <>
             {/* Import Bootstrap Icons */}
             <link
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
             />
-            <div class = "fondo">
+            <div className="fondo">
                 <Container className="d-flex justify-content-center align-items-center vh-100">
-
                     <div className="register-form">
                         <Form onSubmit={handleSubmit}>
-
                             <div className="text-center">
-                                <img src={banner} alt='banner' className='img-fluid' style={{width:'80%'}} />
+                                <img src={banner} alt='banner' className='img-fluid' style={{ width: '80%' }} />
                                 <h5>Iniciar Sesión</h5>
                             </div>
 
@@ -87,15 +101,12 @@ function Login(){
                                 </InputGroup>
                             </Form.Group>
 
-
                             <div className="text-center mt-3">
-                                    <Link to={'/'}><button type="submit" class="btn btn-warning">Ingresar</button></Link>
-
-                                    <div style={{marginTop: '10px'}}>
-                                        <Link to = '/register' class="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">¿Aún no tienes una cuenta? Regístrate aquí</Link>
-                                    </div>
+                                <button type="submit" className="btn btn-warning">Ingresar</button>
+                                <div style={{ marginTop: '10px' }}>
+                                    <Link to='/register' className="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">¿Aún no tienes una cuenta? Regístrate aquí</Link>
+                                </div>
                             </div>
-
                         </Form>
                     </div>
                 </Container>

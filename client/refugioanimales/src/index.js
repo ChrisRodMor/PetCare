@@ -4,6 +4,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import axios from 'axios';
+
+// Configura Axios globalmente
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
