@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@petcare.com',
             'password'=>Hash::make('23Secret*Password10'),
+        ]);
+
+
+        $this->call([
+            ClientSeeder::class,
+
         ]);
     }
 }
