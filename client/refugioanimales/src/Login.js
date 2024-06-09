@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Form, Container, InputGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Form, Container, InputGroup, Modal } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Importa Axios
 import banner from './img/bannerPetCare.png';
 import './Register.css';
@@ -12,6 +12,10 @@ function Login() {
     });
 
     const [showPassword, setShowPassword] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [loginSuccess, setLoginSuccess] = useState(false); // Estado para controlar si el inicio de sesión fue exitoso
+
+    const navigate = useNavigate(); // Usa useNavigate en lugar de useHistory
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -48,14 +52,24 @@ function Login() {
             // Realiza la solicitud de inicio de sesión
             const response = await axiosInstance.post('/login', form);
             console.log(response.data);
-            // Guarda el token en el almacenamiento local o en el contexto
+            // Guarda el token en el almacenamiento local
             localStorage.setItem('token', response.data.token);
-            // Redirige a otra página, actualiza el estado de tu aplicación, etc.
-            // Por ejemplo, podrías redirigir al usuario a su página de perfil
-            // history.push('/perfil');
+            // Marca el inicio de sesión como exitoso
+            setLoginSuccess(true);
+            // Muestra el modal de éxito
+            setShowModal(true);
+            // Redirige a la página principal después de 3 segundos
+            setTimeout(() => {
+                setShowModal(false);
+                navigate('/'); // Usa navigate en lugar de history.push
+            }, 3000);
         } catch (error) {
             console.error(error.response.data);
-        }
+            // Marca el inicio de sesión como no exitoso
+            setLoginSuccess(false);
+            // Muestra el modal de error
+            setShowModal(true);
+        }  
     };
 
     return (
@@ -111,6 +125,12 @@ function Login() {
                     </div>
                 </Container>
             </div>
+
+            <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+                <Modal.Body className="text-center" style={{ backgroundColor: loginSuccess ? '#28A745' : '#DC3545', color: 'white' }}>
+                    {loginSuccess ? '¡Has iniciado sesión correctamente!' : 'Correo y/o contraseña invalidos'}
+                </Modal.Body>
+            </Modal>
         </>
     );
 }

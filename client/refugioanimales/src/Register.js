@@ -1,11 +1,13 @@
 // Register.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Container, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axiosInstance from './axios-config';
 import banner from './img/bannerPetCare.png';
 import './Register.css';
 
 function Register() {
+
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -16,16 +18,52 @@ function Register() {
         birthDate: ''
     });
 
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    useEffect(() => {
+        // Función para obtener el token CSRF al cargar el componente
+        initializeCsrfProtection();
+    }, []);
 
+
+    const initializeCsrfProtection = async () => {
+        try {
+            await axiosInstance.get('/sanctum/csrf-cookie');
+        } catch (error) {
+            console.error('Error initializing CSRF protection:', error);
+        }
+    };
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm({
-            ...form,
-            [name]: value
+          ...form,
+          [name]: value,
         });
     };
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const data = {
+            name: form.name,
+            email: form.email,
+            phone: form.phone,
+            password: form.password,
+            confirmPassword: form.confirmPassword,
+            address: form.address,
+            birthDate: form.birthDate,
+        };
+
+        try {
+            const response = await axiosInstance.post('/api/register', data);
+            console.log('Registro exitoso: ', response.data);
+        } catch (error) {
+            console.error('Error:', error);
+            console.error('Detailed:', error.message);
+        }
+    };
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -33,16 +71,6 @@ function Register() {
 
     const toggleConfirmPasswordVisibility = () => {
         setShowConfirmPassword(!showConfirmPassword);
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await Register(form);
-            console.log(response.data);
-        } catch (error) {
-            console.error(error.response.data);
-        }
     };
 
     return (
