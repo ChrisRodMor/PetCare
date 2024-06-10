@@ -1,76 +1,78 @@
-// Register.js
-import React, { useState, useEffect } from 'react';
-import { Form, Container, InputGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import axiosInstance from './axios-config';
+import React, { useState } from 'react';
+import { Form, Container, InputGroup, Modal } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Importa Axios
 import banner from './img/bannerPetCare.png';
 import './Register.css';
 
 function Register() {
-
     const [form, setForm] = useState({
         name: '',
         email: '',
         phone: '',
         password: '',
-        confirmPassword: '',
+        password_confirmation: '',
         address: '',
-        birthDate: ''
+        birthdate: '',
+        file_path: ''   
     });
 
-    useEffect(() => {
-        // Función para obtener el token CSRF al cargar el componente
-        initializeCsrfProtection();
-    }, []);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showpassword_confirmation, setShowpassword_confirmation] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
+    const navigate = useNavigate();
 
-    const initializeCsrfProtection = async () => {
-        try {
-            await axiosInstance.get('/sanctum/csrf-cookie');
-        } catch (error) {
-            console.error('Error initializing CSRF protection:', error);
-        }
-    };
-    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm({
-          ...form,
-          [name]: value,
+            ...form,
+            [name]: value,
         });
     };
-    
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const data = {
-            name: form.name,
-            email: form.email,
-            phone: form.phone,
-            password: form.password,
-            confirmPassword: form.confirmPassword,
-            address: form.address,
-            birthDate: form.birthDate,
-        };
-
-        try {
-            const response = await axiosInstance.post('/api/register', data);
-            console.log('Registro exitoso: ', response.data);
-        } catch (error) {
-            console.error('Error:', error);
-            console.error('Detailed:', error.message);
-        }
-    };
-
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
-    const toggleConfirmPasswordVisibility = () => {
-        setShowConfirmPassword(!showConfirmPassword);
+    const togglepassword_confirmationVisibility = () => {
+        setShowpassword_confirmation(!showpassword_confirmation);
+    };
+
+    // Configura la instancia principal de Axios
+    const axiosInstance = axios.create({
+        baseURL: 'http://127.0.0.1:8000/api',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        //withCredentials: true // Permite que Axios envíe cookies con las solicitudes
+    });
+
+    // Configura la instancia de Axios para la solicitud CSRF
+    const csrfAxiosInstance = axios.create({
+        baseURL: 'http://127.0.0.1:8000',
+        //withCredentials: true // Permite que Axios envíe cookies con las solicitudes
+    });
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            await csrfAxiosInstance.get('/sanctum/csrf-cookie');
+            const response = await axiosInstance.post('http://127.0.0.1:8000/api/register',form);
+            console.log('Registro exitoso:', response.data);
+            setRegistrationSuccess(true);
+            setShowModal(true);
+            setTimeout(() => {
+                setShowModal(false);
+                navigate('/login');
+            }, 3000);
+        } catch (error) {
+            console.error('Error:', error);
+            console.error('Detailed:', error.message);
+            setShowModal(true);
+        }
     };
 
     return (
@@ -86,7 +88,7 @@ function Register() {
                     <div className="register-form">
                         <Form onSubmit={handleSubmit}>
                             <div className="text-center">
-                                <img src={banner} alt='banner' className='img-fluid' style={{width:'50%'}} />
+                                <img src={banner} alt='banner' className='img-fluid' style={{ width: '50%' }} />
                                 <h5>Regístrate</h5>
                             </div>
 
@@ -141,18 +143,18 @@ function Register() {
                                 </InputGroup>
                             </Form.Group>
 
-                            <Form.Group controlId="formConfirmPassword">
+                            <Form.Group controlId="formpassword_confirmation">
                                 <Form.Label>Confirmar contraseña</Form.Label>
                                 <InputGroup>
                                     <Form.Control
-                                        type={showConfirmPassword ? 'text' : 'password'}
-                                        name="confirmPassword"
+                                        type={showpassword_confirmation ? 'text' : 'password'}
+                                        name="password_confirmation"
                                         placeholder="********"
-                                        value={form.confirmPassword}
+                                        value={form.password_confirmation}
                                         onChange={handleChange}
                                     />
-                                    <InputGroup.Text onClick={toggleConfirmPasswordVisibility} style={{ cursor: 'pointer' }}>
-                                        <i className={showConfirmPassword ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'}></i>
+                                    <InputGroup.Text onClick={togglepassword_confirmationVisibility} style={{ cursor: 'pointer' }}>
+                                        <i className={showpassword_confirmation ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'}></i>
                                     </InputGroup.Text>
                                 </InputGroup>
                             </Form.Group>
@@ -172,8 +174,8 @@ function Register() {
                                 <Form.Label>Fecha de nacimiento</Form.Label>
                                 <Form.Control
                                     type="date"
-                                    name="birthDate"
-                                    value={form.birthDate}
+                                    name="birthdate"
+                                    value={form.birthdate}
                                     onChange={handleChange}
                                 />
                             </Form.Group>
@@ -183,7 +185,7 @@ function Register() {
                                     <button type="button" className="btn btn-outline-warning btn-sm btn-block" style={{ marginRight: '5%' }}>Cancelar</button>
                                 </Link>
                                 <button type="submit" className="btn btn-warning btn-sm btn-block">Aceptar</button>
-                                
+
                                 <div style={{ marginTop: '10px' }}>
                                     <Link to='/login' className="link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">
                                         ¿Ya tienes una cuenta? Inicia sesión aquí
@@ -194,6 +196,12 @@ function Register() {
                     </div>
                 </Container>
             </div>
+
+            <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+                <Modal.Body className="text-center" style={{ backgroundColor: registrationSuccess ? '#28A745' : '#DC3545', color: 'white' }}>
+                    {registrationSuccess ? '¡Registro exitoso!' : 'Error al registrar usuario'}
+                </Modal.Body>
+            </Modal>
         </>
     );
 }

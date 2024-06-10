@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import React from 'react';
 import Register from './Register';
@@ -24,7 +24,6 @@ function App() {
         <Route path = '/configuracion' element={<Configuracion/>}/>
       </Routes>
     </Router>
-    
   );
 }
 
