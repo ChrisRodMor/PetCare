@@ -38,19 +38,19 @@ class StoreClientRequest extends FormRequest
             'phone' => ['required', 'numeric', 'digits:10'],
             'birthdate' => ['required', 'date', 'before:-17 years','after:1900-01-01'],
             'address' =>['required', 'string'],
-            'file_path' => ['nullable' , 'string']
+           
         ];
     }
     public function attributes() : array
     {
         return [
             'name' => 'nombre',
-            'email' => 'correo_electrónico',
-            'password' => 'contraseña',
-            'phone' => 'teléfono',
+            'email' => 'correo_electronico',
+            'password' => 'contrasena',
+            'phone' => 'telefono',
             'birthdate' => 'fecha_nacimiento',
             'address' => 'direccion',
-            'file_path' => 'file_path'
+
         ];
     }
 
@@ -59,17 +59,17 @@ class StoreClientRequest extends FormRequest
         return [
             'unique' => 'Ya existe un registro con ese :attribute.',
             'required' => 'El campo :attribute es requerido.',
-            'numeric' => 'El campo :attribute debe ser numérico.',
-            'max' => 'El campo :attribute debe contener máximo :max caracteres.',
-            'digits' => 'El campo :attribute debe de ser a :digits dígitos.',
-            'in' => 'El campo :attribute debe de tener un dato válido.',
-            'email' => 'El campo :attribute debe ser una dirección de correo electrónico válido.',
-            'regex' => 'El campo :attribute debe ser válido.',
-            'password.regex' => 'El campo :attribute debe de tener mínimo 8 caracteres, una mayúscula ,un número, y un caracter especial (!$#%.,*).',
+            'numeric' => 'El campo :attribute debe ser numerico.',
+            'max' => 'El campo :attribute debe contener maximo :max caracteres.',
+            'digits' => 'El campo :attribute debe de ser a :digits digitos.',
+            'in' => 'El campo :attribute debe de tener un dato valido.',
+            'email' => 'El campo :attribute debe ser una direccion de correo electronico valido.',
+            'regex' => 'El campo :attribute debe ser valido.',
+            'password.regex' => 'El campo :attribute debe de tener minimo 8 caracteres, una mayuscula ,un numero, y un caracter especial (!$#%.,*).',
             'confirmed' => 'El campo :attribute no coincide.',
             'string'=> 'El campo :attribute deben ser caracteres',
             'before' => 'Debes ser mayor de edad para poder registrarte.',
-            'date' => 'El campo :attribute debe ser una fecha válida.',
+            'date' => 'El campo :attribute debe ser una fecha valida.',
             'after' => 'El campo :attribute debe ser una fecha posterior a :date.',
         ];
     }
