@@ -14,7 +14,7 @@ function Register() {
         password_confirmation: '',
         address: '',
         birthdate: '',
-        file_path: ''   
+        file_path: {banner}   
     });
 
     const [showPassword, setShowPassword] = useState(false);

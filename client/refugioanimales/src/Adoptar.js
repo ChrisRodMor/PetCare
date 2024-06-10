@@ -56,7 +56,7 @@ function Adoptar() {
                         <Col>
                             <PetCard
                                 name="Felix"
-                                image={gato}
+                                image={cuyo}
                                 linkTo="/mascota/Felix"
                             />
                         </Col>

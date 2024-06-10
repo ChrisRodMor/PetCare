@@ -39,9 +39,9 @@ function Navbarcliente() {
     <nav class="navbar navbar-expand-lg bg-body-primary shadow-sm">
       <div class="container">
 
-        <a className="navbar-brand">
+        <a href="javascript(0)" className="navbar-brand">
           <Link to={'/'}>
-            <img src={banner} alt="banner" width="350" height="100" className="d-inline-block align-text-top" />
+            <img src={banner} href="#" alt="banner" width="350" height="100" className="d-inline-block align-text-top" />
           </Link>
         </a>
 
@@ -64,7 +64,7 @@ function Navbarcliente() {
               <Link className="nav-link me-5" aria-current="page" to="/donaciones">Donaciones</Link>
             </li>
             <li class="nav-item dropdown me-5">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="javascript(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Mi Perfil
               </a>
               <ul class="dropdown-menu">
