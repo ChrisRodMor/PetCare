@@ -40,7 +40,7 @@ function Navbarcliente() {
       <div class="container">
 
         <a href="javascript(0)" className="navbar-brand">
-          <Link to={'/'}>
+          <Link to={'/Inicio'}>
             <img src={banner} href="#" alt="banner" width="350" height="100" className="d-inline-block align-text-top" />
           </Link>
         </a>
