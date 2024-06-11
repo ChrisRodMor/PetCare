@@ -61,7 +61,7 @@ function Login() {
             // Redirige a la página principal después de 3 segundos
             setTimeout(() => {
                 setShowModal(false);
-                navigate('/'); // Usa navigate en lugar de history.push
+                navigate('/inicio'); // Usa navigate en lugar de history.push
             }, 3000);
         } catch (error) {
             console.error(error.response.data);
