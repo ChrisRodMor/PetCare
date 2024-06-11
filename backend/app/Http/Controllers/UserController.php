@@ -66,9 +66,9 @@ class UserController extends Controller
             case 'client':
                 $user->load('client');
                 break;
-            /*case 'employee':
+            case 'employee':
                 $user->load('employee');
-                break;*/
+                break;
         }
 
         $user->type = $userType;

@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'phone'=> fake()->phoneNumber(),
             'birthdate' => fake()->date(),
             'address'=>fake()->address(),
-            'file_path'=>null,
+            'file_path'=>'profile_pictures/default.jpg',
         ];
     }
 

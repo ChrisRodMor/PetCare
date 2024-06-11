@@ -41,7 +41,8 @@ class ClientController extends Controller
         // Encriptar la contraseña
         $user_data['password'] = Hash::make($user_data['password']);
 
-        // Crear el usuario
+        $user_data['file_path'] ='profile_pictures/default.jpg';
+            // Crear el usuario
         $user = User::create($user_data);
 
         // Crear el cliente asociado al usuario

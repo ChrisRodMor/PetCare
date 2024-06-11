@@ -22,6 +22,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Client::class);
     }
+    public function employee(): HasOne
+    {
+        return $this->hasOne(Employee::class);
+    }
     protected $fillable = [
         'name',
         'email',

@@ -12,9 +12,9 @@ trait UserHelperTrait {
 
         if($user->client){
             return 'client';
-        }/*else if($user->employee){
+        }else if($user->employee){
             return 'employee';
-        }*/
+        }
 
         return 'user';
     }
