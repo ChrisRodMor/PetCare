@@ -64,6 +64,29 @@ class ClientController extends Controller
         // Retornar la información del client junto con el user en formato JSON
         return response()->json(['data' => $client],200);
     }
+    public function search(Request $request)
+    {
+
+        // Validar la entrada del usuario
+        $request->validate([
+            'name' => 'required|string', // Asegura que el nombre sea una cadena de texto
+        ]);
+
+        // Buscar clientes por nombre, cargando la relación de usuario
+        $clients = Client::whereHas('user', function ($query) use ($request) {
+            $query->where('name', 'like', '%' . $request->name . '%'); // Filtrar por nombre
+        })->with('user')->get(); // Cargar la relación de usuario
+
+        // Verificar si se encontraron clientes
+        if ($clients->isEmpty()) {
+            return response()->json(['message' => 'No se encontraron clientes con ese nombre.', 'data' => []], 404);
+        }
+
+        // Retornar los clientes encontrados
+        return response()->json(['data' => $clients], 200);
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.

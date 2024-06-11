@@ -21,4 +21,9 @@ class Employee extends Model
         'position',
         'curp'
     ];
+    protected $hidden=[
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 }
