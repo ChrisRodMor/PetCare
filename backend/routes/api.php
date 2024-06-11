@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,14 @@ use Illuminate\Support\Facades\Route;
 //Autenticación
 Route::post('/register', [ClientController::class, 'store']);
 Route::post('/login', [AuthController::class, 'authenticate']);
+
+
+//publicas
+//Especies
+Route::get('/types', [TypeController::class, 'index']);
+
+//Razas
+Route::get('/breeds/{type}', [TypeController::class, 'getBreeds']);
 
 //Ruta de prueba para obtener datos del usuario
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -26,4 +35,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //clientes
     Route::get('/clients', [ClientController::class, 'index']);
     Route::get('/clients/{client}', [ClientController::class, 'show']);
+
+
 });
