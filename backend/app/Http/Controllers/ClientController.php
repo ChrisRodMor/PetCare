@@ -59,7 +59,10 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        $client->load('user');
+
+        // Retornar la información del client junto con el user en formato JSON
+        return response()->json(['data' => $client],200);
     }
 
     /**

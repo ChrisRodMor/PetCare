@@ -25,5 +25,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     //clientes
     Route::get('/clients', [ClientController::class, 'index']);
-
+    Route::get('/clients/{client}', [ClientController::class, 'show']);
 });
