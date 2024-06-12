@@ -1,4 +1,7 @@
+import { AuthContext } from './AuthContext';
+import React, { useContext } from 'react';
 import Navbarcliente from './Navbarcliente';
+import Navbaremployee from './Navbaremployee';
 import { Container } from 'react-bootstrap';
 import gmail from './img/gmail.webp';
 import instagram from './img/instagram.webp';
@@ -11,9 +14,13 @@ import location from './img/geo-alt-fill.svg';
 
 
 function Contactanos(){
+    const { authData } = useContext(AuthContext);
+    if (!authData) {
+        return <div>Loading...</div>;
+    }
     return(
         <div>
-            <Navbarcliente/>
+            {authData.type === 'employee' ? <Navbaremployee /> : <Navbarcliente />}
             <Container>
                 <div className='mt-5 d-flex mb-5'>
                     <div className='me-auto'>

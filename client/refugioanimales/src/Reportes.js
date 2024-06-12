@@ -1,11 +1,18 @@
+import { AuthContext } from './AuthContext';
+import React, { useContext } from 'react';
 import Navbarcliente from './Navbarcliente';
+import Navbaremployee from './Navbaremployee';
 import { Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Reportes(){
+    const { authData } = useContext(AuthContext);
+    if (!authData) {
+        return <div>Loading...</div>;
+    }
     return(
         <div>
-            <Navbarcliente/>
+            {authData.type === 'employee' ? <Navbaremployee /> : <Navbarcliente />}
             <Container>
                 <div className='mt-5 d-flex'>
                     <div className='d-flex justify-content-center'>

@@ -1,15 +1,21 @@
-import React from 'react';
+import { AuthContext } from './AuthContext';
+import React, { useContext } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import Navbarcliente from './Navbarcliente';
+import Navbaremployee from './Navbaremployee';
 import cuyo from './img/cuyo.jpeg';
 import gato from './img/gato.jpg';
 import perro from './img/perro.jpg';
 import PetCard from './PetCard';
 
 function Adoptar() {
+    const { authData } = useContext(AuthContext);
+    if (!authData) {
+        return <div>Loading...</div>;
+    }
     return (
         <div>
-            <Navbarcliente/>
+            {authData.type === 'employee' ? <Navbaremployee /> : <Navbarcliente />}
             <Container>
                 <div className='mt-5 d-flex mb-4'>
                     <div className='me-auto'>

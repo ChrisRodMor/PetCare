@@ -1,16 +1,42 @@
-import React from 'react';
+import React, { useContext,useEffect } from 'react';
 import { Container, Figure } from 'react-bootstrap';
+import { AuthContext } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 import Navbarcliente from './Navbarcliente';
+import Navbaremployee from './Navbaremployee';
 import "bootstrap/js/dist/carousel";
 import img1 from './img/carousel1.jpg';
 import img2 from './img/carousel2.jpg';
 import img3 from './img/carousel3.jpg';
 import imgdoggy from './img/GettyImages-1209050323.png';
 
-function Inicio() {
+function Inicio() { 
+    
+    
+    const { authData } = useContext(AuthContext);
+    const navigate = useNavigate();
+    
+    
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const refreshed = sessionStorage.getItem('refreshed');
+        
+        if (!token) {
+            navigate('/login');
+        } else if (!refreshed) {
+            window.location.reload();
+            sessionStorage.setItem('refreshed', 'true');
+        }
+    }, [navigate]);
+    
+    if (!authData) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div>
-            <Navbarcliente />
+            
+            {authData.type === 'employee' ? <Navbaremployee /> : <Navbarcliente />}
 
             <div id="carouselExampleCaptions" className="carousel slide">
                 <div className="carousel-indicators">

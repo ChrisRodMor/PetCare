@@ -4,7 +4,7 @@ import './navbarcliente.css';
 import banner from './img/bannerPetCare.png';
 import "bootstrap/dist/js/bootstrap.bundle";
 
-function Navbarcliente() {
+function Navbaremployee() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,16 +57,13 @@ function Navbarcliente() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav nav-underline ms-5 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link me-5" aria-current="page" to="/adoptar">Adoptar</Link>
+              <Link className="nav-link me-5" aria-current="page" to="/adoptar">Animales</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link me-5" aria-current="page" to="/reportes">Reportes</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link me-5" aria-current="page" to="/contactanos">Contactanos</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link me-5" aria-current="page" to="/donaciones">Donaciones</Link>
+              <Link className="nav-link me-5" aria-current="page" to="/contactanos">Clientes</Link>
             </li>
             <li className="nav-item dropdown me-5">
               <a className="nav-link dropdown-toggle" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -85,4 +82,4 @@ function Navbarcliente() {
   );
 }
 
-export default Navbarcliente;
+export default Navbaremployee;

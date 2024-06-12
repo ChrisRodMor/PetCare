@@ -1,10 +1,17 @@
+import React, { useContext } from 'react';
+import { AuthContext } from './AuthContext';
 import Navbarcliente from './Navbarcliente';
+import Navbaremployee from './Navbaremployee';
 import { Container } from 'react-bootstrap';
 
 function Configuracion(){
+    const { authData } = useContext(AuthContext);
+    if (!authData) {
+        return <div>Loading...</div>;
+    }
     return(
         <div>
-            <Navbarcliente/>
+            {authData.type === 'employee' ? <Navbaremployee /> : <Navbarcliente />}
             <Container>
                 <div className='mt-5 d-flex'>
                     <div className='me-auto'>
