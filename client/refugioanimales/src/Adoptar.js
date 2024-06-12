@@ -11,7 +11,7 @@ function Adoptar() {
         <div>
             <Navbarcliente/>
             <Container>
-                <div className='mt-5 d-flex'>
+                <div className='mt-5 d-flex mb-4'>
                     <div className='me-auto'>
                         <h1 className="h1">Refugio</h1>
                     </div>
@@ -43,7 +43,6 @@ function Adoptar() {
                         </Form>
                     </div>
                 </div>
-                <hr className='my-3' style={{ borderTop: '2px solid #D2D5D8'}}></hr>
                 <div>
                     <Row>
                         <Col>

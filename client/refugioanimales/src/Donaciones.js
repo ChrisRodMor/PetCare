@@ -13,7 +13,7 @@ function Donaciones(){
                         <h1 className="h1">Gracias!</h1>
                     </div>
                 </div>
-                <Container className="bg-white p-5 rounded shadow d-flex position-absolute">
+                <Container className="bg-white p-5 rounded shadow d-flex">
                     <Container className= " d-flex flex-column text-align-center justify-content-center align-items-center">
 
                         <p className='fw-light'>¡Gracias por considerar adoptar, donar o voluntariar con nosotros! Tu apoyo es fundamental para nuestra misión de ayudar a los animales necesitados.</p>
@@ -22,7 +22,7 @@ function Donaciones(){
                         <h5>Transferencia interbancaria</h5>
 
                         <div className='m-3'>
-                            <img src={imgmascotas} style={{width: '40vh'}}></img>
+                            <img src={imgmascotas} alt='img'style={{width: '40vh'}}></img>
                         </div>
 
                         <div className='d-flex'>
