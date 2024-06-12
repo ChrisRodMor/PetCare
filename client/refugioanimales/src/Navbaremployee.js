@@ -45,7 +45,7 @@ function Navbaremployee() {
       <div className="container">
 
         <a href="javascript:void(0)" className="navbar-brand">
-          <Link to={'/Inicio'}>
+          <Link to={'/inicio'}>
             <img src={banner} href="#" alt="banner" width="350" height="100" className="d-inline-block align-text-top" />
           </Link>
         </a>
