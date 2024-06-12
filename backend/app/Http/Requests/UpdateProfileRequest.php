@@ -31,7 +31,6 @@ class UpdateProfileRequest extends FormRequest
             ],
             'password' => [
                 'regex:/^.*(?=.{1,})(?=.*[A-Z])(?=.*[0-9])(?=.*[!$#%*]).*$/',
-                'confirmed',
                 'min:8'],
 
             'phone' => ['numeric', 'digits:10'],
