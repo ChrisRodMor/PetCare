@@ -34,7 +34,7 @@ class UserController extends Controller
             ]);
 
             // Eliminar la foto de perfil anterior si existe
-            if ($user->file_path && file_exists(public_path($user->file_path))) {
+            if ($user->file_path && file_exists(public_path($user->file_path)) && $user->file_path !== 'profile_picture/default.jpg') {
                 unlink(public_path($user->file_path));
             }
 
