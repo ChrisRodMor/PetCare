@@ -30,68 +30,69 @@ function Contactanos(){
                         
                     </Container>
 
-                    <Container className='d-flex row'>
-                        <div className='mx-auto'>
-                            <div>
-                                <h5>Correo electrónico</h5>
-                                <div className='d-flex'>
-                                    <img src={gmail} alt='yimei' style={{width: '20px', height: '20px'}}></img>
-                                    <p className='fw-light'>perritosrefugio2003@petcare.com</p>
-                                </div>
-                            </div>
-                            <div>
-                                <h5>Facebook</h5>
-                                <div className='d-flex'>
-                                    <img src={facebook} alt='feis' style={{width: '20px', height: '20px'}}></img>
-                                    <p className='fw-light'>PetcareMascotas</p>
-                                </div>
-                            </div>
-                            <div>
-                                <h5>Instagram</h5>
-                                <div className='d-flex'>
-                                    <img src={instagram} alt='insta' style={{width: '20px', height: '20px'}}></img>
-                                    <p className='fw-light'>Petcare22</p>
-                                </div>
-                            </div>
-                            <div>
-                                <h5>TikTok</h5>
-                                <div className='d-flex'>
-                                    <img src={tiktok} alt='tiktok' style={{width: '20px', height: '20px'}}></img>
-                                    <p className='fw-light'>Pet_Care35</p>
-                                </div>
+                    <Container className='d-flex flex-wrap'>
+                    <div className='mx-auto col-md-6 col-12'>
+                        <div>
+                            <h5>Correo electrónico</h5>
+                            <div className='d-flex align-items-center'>
+                                <img src={gmail} alt='yimei' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
+                                <p className='fw-light mb-0'>perritosrefugio2003@petcare.com</p>
                             </div>
                         </div>
-                        <div className='mx-auto'>
-                            <div>
-                                <h5>Horarios</h5>
-                                <div className='d-flex'>
-                                    <img src={horarios} alt='timer' style={{width: '20px', height: '20px'}}></img>
-                                    <p className='fw-light'>Estamos abiertos de Lunes a viernes de 8 am hasta 8pm. ¡Esperamos verte pronto!</p>
-                                </div>
-                            </div>
-                            <div>
-                                <h5>Teléfono</h5>
-                                <div className='d-flex'>
-                                    <img src={telefono} alt='timer' style={{width: '20px', height: '20px'}}></img>
-                                    <p className='fw-light'>612 124 8754</p>
-                                </div>
-                            </div>
-                            <div>
-                                <h5>Whatsapp</h5>
-                                <div className='d-flex'>
-                                    <img src={whatsapp} alt='whats' style={{width: '20px', height: '20px'}}></img>
-                                    <p className='fw-light'>+52 612 117 1213</p>
-                                </div>
-                            </div>
-                            <div>
-                                <h5>Dirección</h5>
-                                <div className='d-flex'>
-                                    <img src={location} alt='timer' style={{width: '20px', height: '20px'}}></img>
-                                    <p className='fw-light'>Av.Universidad, Solidaridad Mezquititio I, II. </p>
-                                </div>
+                        <div>
+                            <h5>Facebook</h5>
+                            <div className='d-flex align-items-center'>
+                                <img src={facebook} alt='feis' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
+                                <p className='fw-light mb-0'>PetcareMascotas</p>
                             </div>
                         </div>
-                    </Container>
+                        <div>
+                            <h5>Instagram</h5>
+                            <div className='d-flex align-items-center'>
+                                <img src={instagram} alt='insta' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
+                                <p className='fw-light mb-0'>Petcare22</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>TikTok</h5>
+                            <div className='d-flex align-items-center'>
+                                <img src={tiktok} alt='tiktok' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
+                                <p className='fw-light mb-0'>Pet_Care35</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='mx-auto col-md-6 col-12'>
+                        <div>
+                            <h5>Horarios</h5>
+                            <div className='d-flex align-items-center'>
+                                <img src={horarios} alt='timer' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
+                                <p className='fw-light mb-0'>Estamos abiertos de Lunes a viernes de 8 am hasta 8pm. ¡Esperamos verte pronto!</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>Teléfono</h5>
+                            <div className='d-flex align-items-center'>
+                                <img src={telefono} alt='telefono' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
+                                <p className='fw-light mb-0'>612 124 8754</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>Whatsapp</h5>
+                            <div className='d-flex align-items-center'>
+                                <img src={whatsapp} alt='whats' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
+                                <p className='fw-light mb-0'>+52 612 117 1213</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>Dirección</h5>
+                            <div className='d-flex align-items-center'>
+                                <img src={location} alt='location' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
+                                <p className='fw-light mb-0'>Av.Universidad, Solidaridad Mezquititio I, II.</p>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+
 
                     
 
