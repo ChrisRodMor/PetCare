@@ -28,9 +28,6 @@ class UpdateProfileRequest extends FormRequest
                 'email',
                 'max:320',
             ],
-            'password' => [
-                'regex:/^.*(?=.{1,})(?=.*[A-Z])(?=.*[0-9])(?=.*[!$#%*]).*$/',
-                'min:8'],
 
             'phone' => ['numeric', 'digits:10'],
             'address' =>['string'],

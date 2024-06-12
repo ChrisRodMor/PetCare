@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use App\Traits\UserHelperTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -20,9 +21,24 @@ class UserController extends Controller
         $userData = $request->except(['name', 'birthdate', 'password', 'profile_picture']);
 
         // Si la contraseña está presente en la solicitud, hashearla antes de actualizar
-        if ($request->filled('password')) {
-            $userData['password'] = Hash::make($request->input('password'));
+        if ($request->filled('password') ) {
+            $request->validate([
+                'password' => [
+                    'required',
+                    'string',
+                    'min:8',
+                    'regex:/^.*(?=.{1,})(?=.*[A-Z])(?=.*[0-9])(?=.*[!$#%*]).*$/'
+                ],
+            ], [
+                'password.required' => 'El campo contraseña es obligatorio.',
+                'password.string' => 'El campo contraseña debe ser una cadena de caracteres.',
+                'password.min' => 'El campo contraseña debe tener al menos :min caracteres.',
+                'password.regex' => 'El campo contraseña debe contener al menos una letra mayúscula, un número y un carácter especial (!, $, #, % o *).',
+            ]);
+
+            $user->password = Hash::make($request->input('password'));
         }
+
 
         // Si la solicitud contiene una foto de perfil, manejar la carga del archivo
         if ($request->hasFile('profile_picture')) {
