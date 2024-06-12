@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Animal extends Model
 {
@@ -18,6 +19,9 @@ class Animal extends Model
     public function breed()
     {
         return $this->belongsTo(Breed::class);
+    }
+    public function vaccines():HasMany{
+        return $this->hasMany(Vaccine::class);
     }
     // Campos asignables de forma masiva
     protected $fillable = [

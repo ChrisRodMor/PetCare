@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VaccineController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,8 @@ Route::get('/breeds/{type}', [TypeController::class, 'getBreeds']);
 Route::get('/animals',[AnimalController::class, 'index']);
 Route::post('/search-animals', [AnimalController::class, 'searchAnimals']);
 Route::get('/animals/{animal}', [AnimalController::class, 'show']);
-
-
+Route::get('/vaccines/{animal}', [VaccineController::class, 'getVaccines']);
+Route::post('/store-vaccine', [VaccineController::class, 'store']);
 
 //Grupo de rutas con el middleware de autenticación con Sanctum (si no está logueado el usuario, no puede acceder)
 Route::middleware(['auth:sanctum'])->group(function () {
