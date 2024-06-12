@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('gender', ['Hembra', 'Macho']);
             $table->boolean('is_adopted')->default(false);
-            $table->enum('esterilized',['Si','No'])->default('NO');
+            $table->enum('sterilized',['Si','No'])->default('NO');
             $table->date('birthdate')->nullable();
             $table->string('age')->nullable();
             $table->string('color');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->enum('size',['Pequeño','Mediano','Grande']);
             $table->enum('health',['Mala','Regular','Buena','Excelente'])->default('Buena');
             $table->longText('description');
-            $table->string('file_path')->nullable();
+            $table->string('file_path')->nullable()->default('animals_picture/default.jpg');
 
             //llaves foraneas
             $table->foreign('type_id')->references('id')->on('types');

@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [ClientController::class, 'store']);
 Route::post('/login', [AuthController::class, 'authenticate']);
 
-
 //      publicas
 //Especies
 Route::get('/types', [TypeController::class, 'index']);
@@ -23,8 +22,7 @@ Route::get('/breeds/{type}', [TypeController::class, 'getBreeds']);
 //Animals
 Route::get('/animals',[AnimalController::class, 'index']);
 Route::post('/search-animals', [AnimalController::class, 'searchAnimals']);
-//Route::get('/animals/{animal}', [AnimalController::class, 'getAnimal']);
-//Route::post('/animals', [AnimalController::class, 'store']);
+Route::get('/animals/{animal}', [AnimalController::class, 'show']);
 
 
 
@@ -39,5 +37,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/clients', [ClientController::class, 'index']);
     Route::get('/clients/{client}', [ClientController::class, 'show']);
     Route::post('/clients-search',[ClientController::class,'search']);
+
+    //animales
+    Route::post('/store-animals', [AnimalController::class, 'store']);
+    Route::put('/update-animals/{animal}', [AnimalController::class, 'update']);
 
 });

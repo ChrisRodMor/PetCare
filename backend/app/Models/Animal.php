@@ -26,7 +26,7 @@ class Animal extends Model
         'name',
         'gender',
         'is_adopted',
-        'esterilized',
+        'sterilized',
         'birthdate',
         'age',
         'color',

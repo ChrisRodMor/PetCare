@@ -42,7 +42,7 @@ class AnimalFactory extends Factory
             'gender' => $gender,
             'name' => $name,
             'is_adopted' => false,
-            'esterilized' => $this->faker->randomElement(['Si', 'No']),
+            'sterilized' => $this->faker->randomElement(['Si', 'No']),
             'birthdate' => $birthdate, // Fecha entre 2009 y ahora
             'age' => $age, // Edad calculada basada en la fecha de nacimiento
             'color' => $this->faker->randomElement(['Blanco', 'Negro', 'Marrón', 'Gris', 'Beige']),

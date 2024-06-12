@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAnimalRequest;
+use App\Http\Requests\UpdateAnimalRequest;
 use App\Models\Animal;
 use Illuminate\Http\Request;
 
@@ -78,17 +80,43 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAnimalRequest $request)
     {
-        //
+        $animal_data = $request->all();
+
+        // Check if the request contains a file upload
+        if ($request->hasFile('animal_picture')) {
+            $file = $request->file('animal_picture');
+
+            // Validate that the uploaded file is an image
+            $request->validate([
+                'animal_picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            // Generate a unique name for the image
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+            // Save the image in the 'animals_pictures' folder
+            $file->move(public_path('animals_picture'), $fileName);
+
+            // Store the file path in the animal_data array
+            $animal_data['file_path'] = 'animals_picture/' . $fileName;
+
+        }
+        // Create the animal record
+        $animal = Animal::create($animal_data);
+        return response()->json(['message' => 'Se ha creado el registro del animal.', 'data' => $animal], 200);
+
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(Animal $animal)
     {
-        //
+        // Retornar el animal en formato JSON
+        return response()->json(['data' => $animal], 200);
     }
 
     /**
@@ -102,10 +130,55 @@ class AnimalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Animal $animal)
+    public function update(UpdateAnimalRequest $request, Animal $animal)
     {
-        //
+        $animalData = $request->all();
+
+        // Check if the request contains a file upload
+        if ($request->hasFile('animal_picture')) {
+            $file = $request->file('animal_picture');
+
+            // Validate that the uploaded file is an image
+            $request->validate([
+                'animal_picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            // Check if the animal already has a picture and delete the old one
+            if ($animal->file_path && $animal->file_path !== 'animals_picture/default.jpg') {
+                $oldFilePath = public_path($animal->file_path);
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath);
+                }
+            }
+
+            // Generate a unique name for the new image
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+            // Save the new image in the 'animals_pictures' folder
+            $file->move(public_path('animals_picture'), $fileName);
+
+            // Store the file path in the animalData array
+            $animalData['file_path'] = 'animals_picture/' . $fileName;
+        }else {
+            if ($animal->file_path && $animal->file_path !== 'animals_picture/default.jpg') {
+                $oldFilePath = public_path($animal->file_path);
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath);
+                }
+            }
+            $animalData['file_path'] = 'animals_picture/default.jpg';
+
+        }
+
+        // Update the animal with the new data
+        $animal->update($animalData);
+
+        // Reload the animal to ensure we have the most recent data
+        $animal = Animal::findOrFail($animal->id);
+
+        return response()->json(['message' => 'Los datos han sido actualizados correctamente', 'data' => $animal], 200);
     }
+
 
     /**
      * Remove the specified resource from storage.
