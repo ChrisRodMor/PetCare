@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             ClientSeeder::class,
             EmployeeSeeder::class,
             BreedSeeder::class,
+            AnimalSeeder::class,
         ]);
     }
 }

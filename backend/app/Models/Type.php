@@ -14,6 +14,11 @@ class Type extends Model
     public function breeds():HasMany{
         return $this->hasMany(Breed::class);
     }
+
+    public function animals():HasMany{
+        return $this->hasMany(Animal::class);
+    }
+
     protected $fillable = [
 
         'name'

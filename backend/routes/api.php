@@ -12,18 +12,12 @@ Route::post('/register', [ClientController::class, 'store']);
 Route::post('/login', [AuthController::class, 'authenticate']);
 
 
-//publicas
+//      publicas
 //Especies
 Route::get('/types', [TypeController::class, 'index']);
 
 //Razas
 Route::get('/breeds/{type}', [TypeController::class, 'getBreeds']);
-
-//Ruta de prueba para obtener datos del usuario
-/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
-
 
 //Grupo de rutas con el middleware de autenticación con Sanctum (si no está logueado el usuario, no puede acceder)
 Route::middleware(['auth:sanctum'])->group(function () {
