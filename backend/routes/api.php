@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TypeController;
@@ -18,6 +19,14 @@ Route::get('/types', [TypeController::class, 'index']);
 
 //Razas
 Route::get('/breeds/{type}', [TypeController::class, 'getBreeds']);
+
+//Animals
+Route::get('/animals',[AnimalController::class, 'index']);
+Route::post('/search-animals', [AnimalController::class, 'searchAnimals']);
+//Route::get('/animals/{animal}', [AnimalController::class, 'getAnimal']);
+//Route::post('/animals', [AnimalController::class, 'store']);
+
+
 
 //Grupo de rutas con el middleware de autenticación con Sanctum (si no está logueado el usuario, no puede acceder)
 Route::middleware(['auth:sanctum'])->group(function () {
