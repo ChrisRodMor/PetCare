@@ -34,7 +34,7 @@ class UserController extends Controller
             ]);
 
             // Eliminar la foto de perfil anterior si existe
-            if ($user->file_path && file_exists(public_path($user->file_path)) && $user->file_path !== 'profile_picture/default.jpg') {
+            if ($user->file_path && file_exists(public_path($user->file_path)) && $user->file_path !== 'profile_pictures/default.jpg') {
                 unlink(public_path($user->file_path));
             }
 
@@ -46,6 +46,15 @@ class UserController extends Controller
 
             // Almacenar la ruta de la nueva imagen en el campo 'file_path'
             $userData['file_path'] = 'profile_pictures/' . $fileName;
+        }else {
+            if ($user->file_path && $user->file_path !== 'profile_pictures/default.jpg') {
+                $oldFilePath = public_path($user->file_path);
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath);
+                }
+            }
+            $userData['file_path'] = 'profile_pictures/default.jpg';
+
         }
 
         // Actualizar los datos del usuario

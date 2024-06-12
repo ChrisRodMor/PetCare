@@ -27,7 +27,6 @@ class UpdateProfileRequest extends FormRequest
             'email' => [
                 'email',
                 'max:320',
-                Rule::unique('users','email')
             ],
             'password' => [
                 'regex:/^.*(?=.{1,})(?=.*[A-Z])(?=.*[0-9])(?=.*[!$#%*]).*$/',
@@ -35,7 +34,7 @@ class UpdateProfileRequest extends FormRequest
 
             'phone' => ['numeric', 'digits:10'],
             'address' =>['string'],
-            'file_path' => [ 'string']
+            //'file_path' => [ 'string']
 
         ];
     }
