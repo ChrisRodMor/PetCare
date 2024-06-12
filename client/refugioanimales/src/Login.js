@@ -44,6 +44,15 @@ function Login() {
         //withCredentials: true // Permite que Axios envíe cookies con las solicitudes
     });
 
+    const bearer = () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        } else {
+            delete axiosInstance.defaults.headers.common['Authorization'];
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -53,7 +62,9 @@ function Login() {
             const response = await axiosInstance.post('/login', form);
             console.log(response.data);
             // Guarda el token en el almacenamiento local
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', response.data.data.token); // Asegúrate de usar la ruta correcta al token
+            // Llama a la función bearer para configurar el token en los encabezados de las solicitudes
+            bearer();
             // Marca el inicio de sesión como exitoso
             setLoginSuccess(true);
             // Muestra el modal de éxito
@@ -69,7 +80,7 @@ function Login() {
             setLoginSuccess(false);
             // Muestra el modal de error
             setShowModal(true);
-        }  
+        }
     };
 
     return (

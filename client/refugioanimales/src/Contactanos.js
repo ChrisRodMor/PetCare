@@ -32,28 +32,28 @@ function Contactanos(){
 
                     <Container className='d-flex flex-wrap'>
                     <div className='mx-auto col-md-6 col-12'>
-                        <div>
+                        <div className='mb-4'>
                             <h5>Correo electrónico</h5>
                             <div className='d-flex align-items-center'>
                                 <img src={gmail} alt='yimei' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
                                 <p className='fw-light mb-0'>perritosrefugio2003@petcare.com</p>
                             </div>
                         </div>
-                        <div>
+                        <div className='mb-4'>
                             <h5>Facebook</h5>
                             <div className='d-flex align-items-center'>
                                 <img src={facebook} alt='feis' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
                                 <p className='fw-light mb-0'>PetcareMascotas</p>
                             </div>
                         </div>
-                        <div>
+                        <div className='mb-4'>
                             <h5>Instagram</h5>
                             <div className='d-flex align-items-center'>
                                 <img src={instagram} alt='insta' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
                                 <p className='fw-light mb-0'>Petcare22</p>
                             </div>
                         </div>
-                        <div>
+                        <div className='mb-4'>
                             <h5>TikTok</h5>
                             <div className='d-flex align-items-center'>
                                 <img src={tiktok} alt='tiktok' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
@@ -62,28 +62,28 @@ function Contactanos(){
                         </div>
                     </div>
                     <div className='mx-auto col-md-6 col-12'>
-                        <div>
+                        <div className='mb-4'>
                             <h5>Horarios</h5>
                             <div className='d-flex align-items-center'>
                                 <img src={horarios} alt='timer' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
                                 <p className='fw-light mb-0'>Estamos abiertos de Lunes a viernes de 8 am hasta 8pm. ¡Esperamos verte pronto!</p>
                             </div>
                         </div>
-                        <div>
+                        <div className='mb-4'>
                             <h5>Teléfono</h5>
                             <div className='d-flex align-items-center'>
                                 <img src={telefono} alt='telefono' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
                                 <p className='fw-light mb-0'>612 124 8754</p>
                             </div>
                         </div>
-                        <div>
+                        <div className='mb-4'>
                             <h5>Whatsapp</h5>
                             <div className='d-flex align-items-center'>
                                 <img src={whatsapp} alt='whats' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>
                                 <p className='fw-light mb-0'>+52 612 117 1213</p>
                             </div>
                         </div>
-                        <div>
+                        <div className='mb-4'>
                             <h5>Dirección</h5>
                             <div className='d-flex align-items-center'>
                                 <img src={location} alt='location' style={{width: '20px', height: '20px', marginRight: '8px'}}></img>

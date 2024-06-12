@@ -9,23 +9,26 @@ import Reportes from './Reportes';
 import Contactanos from './Contactanos';
 import Donaciones from './Donaciones';
 import Configuracion from './Configuracion';
+import NuevoReporte from './NuevoReporte';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path = '/' element={<Login/>}/> 
-        <Route path = '/login' element={<Login/>}/>
-        <Route path = '/register' element={<Register/>}/>
-        <Route path = '/inicio' element={<Inicio/>}/>
-        <Route path = '/adoptar' element={<Adoptar/>}/>
-        <Route path = '/reportes' element={<Reportes/>}/>
-        <Route path = '/contactanos' element={<Contactanos/>}/>
-        <Route path = '/donaciones' element={<Donaciones/>}/>
-        <Route path = '/configuracion' element={<Configuracion/>}/>
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
+                <Route path="/adoptar" element={<ProtectedRoute element={<Adoptar />} />} />
+                <Route path="/reportes" element={<ProtectedRoute element={<Reportes />} />} />
+                <Route path="/nuevoreporte" element={<ProtectedRoute element={<NuevoReporte />} />} />
+                <Route path="/contactanos" element={<ProtectedRoute element={<Contactanos />} />} />
+                <Route path="/donaciones" element={<ProtectedRoute element={<Donaciones />} />} />
+                <Route path="/configuracion" element={<ProtectedRoute element={<Configuracion />} />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
