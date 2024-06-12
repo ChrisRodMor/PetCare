@@ -22,7 +22,7 @@ function PetCard({ name, image, linkTo }) {
                     <div 
                         className="d-flex p-4" 
                         style={{
-                            backgroundColor: 'rgba(0, 0, 0, 0.6)', // Color de fondo con opacidad
+                            backgroundColor: 'rgba(0, 0, 0, 0.3)', // Color de fondo con opacidad
                             position: 'absolute',
                             top: 0,
                             left: 0,
