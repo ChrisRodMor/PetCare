@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbarcliente from './Navbarcliente';
-import { Container, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,6 +12,12 @@ function NuevoReporte() {
       case 'Reporte de mascota perdida':
         return (
           <>
+            <div className="row mb-3">
+                <div className="col-md-12">
+                  <label htmlFor="reportImage" className="form-label">Foto del animal</label>
+                  <input type="file" className="form-control" id="reportImage" />
+                </div>
+            </div>
             <div className="row mb-3">
               <div className="col-md-12 mb-3">
                 <label htmlFor="petName" className="form-label">Nombre</label>
@@ -57,6 +63,17 @@ function NuevoReporte() {
             </div>
           </>
         );
+      case 'Reporte de maltrato':
+        return (
+          <>
+            <div className="row mb-3">
+              <div className="col-md-12 mb-3">
+                <label htmlFor="petName" className="form-label">Dirección</label>
+                <input type="text" className="form-control" id="petName" placeholder="Última vez visto..." />
+              </div>
+            </div>
+          </>
+        );
       default:
         return null;
     }
@@ -97,13 +114,6 @@ function NuevoReporte() {
                 <div className="col-md-6">
                   <label htmlFor="reportTime" className="form-label">Hora de los hechos</label>
                   <input type="time" className="form-control" id="reportTime" />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <div className="col-md-12">
-                  <label htmlFor="reportImage" className="form-label">Foto del animal</label>
-                  <input type="file" className="form-control" id="reportImage" />
                 </div>
               </div>
 

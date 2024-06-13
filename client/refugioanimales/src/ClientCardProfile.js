@@ -7,7 +7,7 @@ function ClientCardProfile({ name, file_path }) {
             <Card.Body
                 className="d-flex justify-content-center align-items-center"
                 style={{
-                    backgroundImage: file_path ? `url(${file_path})` : 'none',
+                    backgroundImage: `url(${file_path})`,
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
