@@ -115,9 +115,16 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
+        // Cargar las relaciones de raza y tipo
         $animal->load('breed', 'type');
-        // Retornar el animal en formato JSON
-        return response()->json(['data' => $animal], 200);
+
+        // Agregar los nombres de raza y tipo como campos adicionales
+        $animalArray = $animal->toArray();
+        $animalArray['breed_name'] = $animal->breed->name ?? null;
+        $animalArray['type_name'] = $animal->type->name ?? null;
+
+        // Retornar la respuesta en formato JSON
+        return response()->json(['data' => $animalArray], 200);
     }
 
     /**
