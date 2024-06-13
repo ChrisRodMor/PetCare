@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function PetCard({ name, image, linkTo }) {
     return (
         <Card className="pet-card mb-3" style={{borderRadius: '21px'}}>
-            <Link to={linkTo}>
+            <Link to={`/adoptar/${linkTo}`}>
                 <Card.Body 
                     className="d-flex justify-content-center align-items-center" 
                     style={{ 

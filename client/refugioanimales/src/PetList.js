@@ -127,7 +127,7 @@ function PetList() {
                         <PetCard 
                             name={pet.name} 
                             image={`http://127.0.0.1:8000/${pet.file_path}`} 
-                            linkTo={`/adoptar/${pet.id}`} 
+                            id = {pet.id} 
                         />
                     </Col>
                 ))}
