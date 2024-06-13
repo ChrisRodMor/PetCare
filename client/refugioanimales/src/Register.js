@@ -120,7 +120,7 @@ function Register() {
                                     <Form.Control
                                         type="text"
                                         name="phone"
-                                        placeholder="624 123 4546"
+                                        placeholder="El campo debe de contener a 10 dígitos."
                                         value={form.phone}
                                         onChange={handleChange}
                                     />
@@ -133,7 +133,7 @@ function Register() {
                                     <Form.Control
                                         type={showPassword ? 'text' : 'password'}
                                         name="password"
-                                        placeholder="********"
+                                        placeholder="Debe contener al menos 8 caracteres. una mayúscula, número y un (!, $, #, % o *)."
                                         value={form.password}
                                         onChange={handleChange}
                                     />  

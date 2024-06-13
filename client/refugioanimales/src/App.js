@@ -5,6 +5,7 @@ import Register from './Register';
 import Login from './Login';
 import Inicio from './Inicio';
 import Adoptar from './Adoptar';
+import VerMascota from './VerMascota';
 import Reportes from './Reportes';
 import Contactanos from './Contactanos';
 import Donaciones from './Donaciones';
@@ -23,6 +24,7 @@ function App() {
                   <Route path="/register" element={<Register />} />
                   <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
                   <Route path="/adoptar" element={<ProtectedRoute element={<Adoptar />} />} />
+                  <Route path="/adoptar/:id" element={<ProtectedRoute element={<VerMascota />} />} />
                   <Route path="/reportes" element={<ProtectedRoute element={<Reportes />} />} />
                   <Route path="/nuevoreporte" element={<ProtectedRoute element={<NuevoReporte />} />} />
                   <Route path="/contactanos" element={<ProtectedRoute element={<Contactanos />} />} />

@@ -157,6 +157,7 @@ function Configuracion() {
                                         <Form.Control
                                             type="text"
                                             name="phone"
+                                            placeholder='El campo debe de contener a 10 dígitos.'
                                             value={formData.phone}
                                             onChange={handleChange}
                                         />
@@ -167,7 +168,7 @@ function Configuracion() {
                                             <Form.Control
                                                 type={showPassword ? 'text' : 'password'}
                                                 name="password"
-                                                placeholder="Nueva contraseña..."
+                                                placeholder="Debe contener al menos 8 caracteres. una mayúscula, número y un (!, $, #, % o *)."
                                                 value={formData.password}
                                                 onChange={handleChange}
                                             />
@@ -181,6 +182,7 @@ function Configuracion() {
                                         <Form.Control
                                             type="text"
                                             name="address"
+                                            placeholder="Nueva contraseña..."
                                             value={formData.address}
                                             onChange={handleChange}
                                         />
