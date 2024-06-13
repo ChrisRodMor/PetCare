@@ -17,7 +17,10 @@ export const AuthProvider = ({ children }) => {
                             Authorization: `Bearer ${token}`
                         }
                     });
-                    setAuthData(response.data.data);
+                    setAuthData({
+                        ...response.data.data,
+                        token
+                    });
                 } catch (error) {
                     console.error('Error fetching profile:', error);
                 }

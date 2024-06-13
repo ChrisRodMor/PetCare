@@ -2,33 +2,33 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function ClientCard({ name, image, linkTo }) {
+function ClientCard({ name, image, id }) {
     return (
-        <Card className="pet-card mb-3" style={{borderRadius: '21px'}}>
-            <Link to={linkTo}>
+        <Card className="pet-card mb-3" style={{ borderRadius: '21px' }}>
+            <Link to={`/clientes/${id}`}>
                 <Card.Body 
                     className="d-flex justify-content-center align-items-center" 
                     style={{ 
                         backgroundImage: `url(${image})`,
-                        backgroundSize: 'contain', // Ajuste para que la imagen se adapte al contenedor
-                        backgroundRepeat: 'no-repeat', // Evita la repetición de la imagen
-                        backgroundPosition: 'center', // Centra la imagen dentro del contenedor
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
                         position: 'relative',
-                        minHeight: '300px', // Ajusta la altura según tus necesidades
+                        minHeight: '300px',
                         color: 'white',
-                        borderRadius: '20px', // Bordes redondeados
+                        borderRadius: '20px'
                     }}
                 >
                     <div 
                         className="d-flex p-4" 
                         style={{
-                            backgroundColor: 'rgba(0, 0, 0, 0.3)', // Color de fondo con opacidad
+                            backgroundColor: 'rgba(0, 0, 0, 0.3)',
                             position: 'absolute',
                             top: 0,
                             left: 0,
                             right: 0,
                             bottom: 0,
-                            borderRadius: '20px', // Bordes redondeados
+                            borderRadius: '20px'
                         }}
                     >
                         <Card.Title>{name}</Card.Title>

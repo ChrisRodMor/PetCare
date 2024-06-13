@@ -57,7 +57,7 @@ function Navbaremployee() {
               <Link className="nav-link me-5" aria-current="page" to="/reportes">Reportes</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link me-5" aria-current="page" to="/contactanos">Clientes</Link>
+              <Link className="nav-link me-5" aria-current="page" to="/clientes">Clientes</Link>
             </li>
             <li className="nav-item dropdown me-5">
               <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -6,8 +6,10 @@ import Login from './Login';
 import Inicio from './Inicio';
 import Adoptar from './Adoptar';
 import VerMascota from './VerMascota';
+import VerCliente from './VerCliente';
 import Reportes from './Reportes';
 import Contactanos from './Contactanos';
+import Clientes from './Clientes';
 import Donaciones from './Donaciones';
 import Configuracion from './Configuracion';
 import NuevoReporte from './NuevoReporte';
@@ -28,6 +30,8 @@ function App() {
                   <Route path="/reportes" element={<ProtectedRoute element={<Reportes />} />} />
                   <Route path="/nuevoreporte" element={<ProtectedRoute element={<NuevoReporte />} />} />
                   <Route path="/contactanos" element={<ProtectedRoute element={<Contactanos />} />} />
+                  <Route path="/clientes" element={<ProtectedRoute element={<Clientes />} />} />
+                  <Route path="/clientes/:id" element={<ProtectedRoute element={<VerCliente />} />} />
                   <Route path="/donaciones" element={<ProtectedRoute element={<Donaciones />} />} />
                   <Route path="/configuracion" element={<ProtectedRoute element={<Configuracion />} />} />
               </Routes>
