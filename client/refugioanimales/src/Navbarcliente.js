@@ -23,6 +23,7 @@ function Navbarcliente() {
     script3.integrity = 'sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM';
     script3.crossOrigin = 'anonymous';
 
+
     document.body.appendChild(script1);
     document.body.appendChild(script2);
     document.body.appendChild(script3);
