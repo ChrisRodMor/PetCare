@@ -31,7 +31,7 @@ Route::post('/store-vaccine', [VaccineController::class, 'store']);
 Route::middleware(['auth:sanctum'])->group(function () {
     //cuenta
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::put('/update-profile', [UserController::class, 'updateProfile']);
+    Route::post('/update-profile', [UserController::class, 'updateProfile']);
     Route::get('/profile', [UserController::class, 'profile']);
 
     //clientes
@@ -41,6 +41,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     //animales
     Route::post('/store-animals', [AnimalController::class, 'store']);
-    Route::put('/update-animals/{animal}', [AnimalController::class, 'update']);
+    Route::post('/update-animals/{animal}', [AnimalController::class, 'update']);
 
 });
