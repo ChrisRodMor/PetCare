@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AbuseReportController;
+use App\Http\Controllers\AdoptionReportController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VaccineController;
@@ -42,5 +45,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //animales
     Route::post('/store-animals', [AnimalController::class, 'store']);
     Route::post('/update-animals/{animal}', [AnimalController::class, 'update']);
+
+    //reportes
+    Route::post('/report-update-status/{report}',[ReportController::class, 'updateStatus']);
+
+    Route::post('/store-abuse-report',[AbuseReportController::class,'store']);
+
+    Route::post('/store-adoption-report',[AdoptionReportController::class,'store']);
 
 });
