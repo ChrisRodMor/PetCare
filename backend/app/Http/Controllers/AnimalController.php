@@ -115,7 +115,7 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
-        $animal->load('breed', 'species');
+        $animal->load('breed', 'type');
         // Retornar el animal en formato JSON
         return response()->json(['data' => $animal], 200);
     }
