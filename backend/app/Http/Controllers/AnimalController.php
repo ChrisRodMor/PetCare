@@ -159,15 +159,6 @@ class AnimalController extends Controller
 
             // Store the file path in the animalData array
             $animalData['file_path'] = 'animals_picture/' . $fileName;
-        }else {
-            if ($animal->file_path && $animal->file_path !== 'animals_picture/default.jpg') {
-                $oldFilePath = public_path($animal->file_path);
-                if (file_exists($oldFilePath)) {
-                    unlink($oldFilePath);
-                }
-            }
-            $animalData['file_path'] = 'animals_picture/default.jpg';
-
         }
 
         // Update the animal with the new data
