@@ -30,17 +30,17 @@ Route::get('/animals/{animal}', [AnimalController::class, 'show']);
 Route::get('/vaccines/{animal}', [VaccineController::class, 'getVaccines']);
 Route::post('/store-vaccine', [VaccineController::class, 'store']);
 
-//clientes
-Route::get('/clients', [ClientController::class, 'index']);
-Route::get('/clients/{client}', [ClientController::class, 'show']);
-Route::post('/clients-search',[ClientController::class,'search']);
-
 //Grupo de rutas con el middleware de autenticación con Sanctum (si no está logueado el usuario, no puede acceder)
 Route::middleware(['auth:sanctum'])->group(function () {
     //cuenta
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/update-profile', [UserController::class, 'updateProfile']);
     Route::get('/profile', [UserController::class, 'profile']);
+
+    //clientes
+    Route::get('/clients', [ClientController::class, 'index']);
+    Route::get('/clients/{client}', [ClientController::class, 'show']);
+    Route::post('/clients-search',[ClientController::class,'search']);
 
     //animales
     Route::post('/store-animals', [AnimalController::class, 'store']);
