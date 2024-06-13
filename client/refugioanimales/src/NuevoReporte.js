@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Navbarcliente from './Navbarcliente';
 import { Container, Button } from 'react-bootstrap';
-import imgdefault from './img/default.jpg';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,16 +13,9 @@ function NuevoReporte() {
         return (
           <>
             <div className="row mb-3">
-              <div className="col-md-6 mb-3">
+              <div className="col-md-12 mb-3">
                 <label htmlFor="petName" className="form-label">Nombre</label>
                 <input type="text" className="form-control" id="petName" placeholder="Nombre de la mascota" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label htmlFor="petSex" className="form-label">Sexo</label>
-                <select className="form-select" id="petSex">
-                  <option>Macho</option>
-                  <option>Hembra</option>
-                </select>
               </div>
             </div>
             <div className="row mb-3">
@@ -48,15 +40,18 @@ function NuevoReporte() {
             </div>
             <div className="row mb-3">
               <div className="col-md-6 mb-3">
-                <label htmlFor="petWeight" className="form-label">Peso</label>
-                <input type="text" className="form-control" id="petWeight" placeholder="Peso" />
-              </div>
-              <div className="col-md-6 mb-3">
                 <label htmlFor="petSize" className="form-label">Tamaño</label>
                 <select className="form-select" id="petSize">
                   <option>Pequeño</option>
                   <option>Mediano</option>
                   <option>Grande</option>
+                </select>
+              </div>
+              <div className="col-md-6 mb-3">
+                <label htmlFor="petSex" className="form-label">Sexo</label>
+                <select className="form-select" id="petSex">
+                  <option>Macho</option>
+                  <option>Hembra</option>
                 </select>
               </div>
             </div>
@@ -106,11 +101,7 @@ function NuevoReporte() {
               </div>
 
               <div className="row mb-3">
-                <div className="col-md-6 mb-3">
-                  <label htmlFor="reportAddress" className="form-label">Dirección de los hechos</label>
-                  <input type="text" className="form-control" id="reportAddress" placeholder="Ingrese la dirección" />
-                </div>
-                <div className="col-md-6">
+                <div className="col-md-12">
                   <label htmlFor="reportImage" className="form-label">Foto del animal</label>
                   <input type="file" className="form-control" id="reportImage" />
                 </div>

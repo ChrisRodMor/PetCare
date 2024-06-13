@@ -27,11 +27,6 @@ function Navbaremployee() {
     document.body.appendChild(script2);
     document.body.appendChild(script3);
 
-    return () => {
-      document.body.removeChild(script1);
-      document.body.removeChild(script2);
-      document.body.removeChild(script3);
-    };
   }, []);
 
   const handleLogout = () => {
@@ -44,11 +39,9 @@ function Navbaremployee() {
     <nav className="navbar navbar-expand-lg bg-body-primary shadow-sm">
       <div className="container">
 
-        <a href="javascript:void(0)" className="navbar-brand">
-          <Link to={'/inicio'}>
-            <img src={banner} href="#" alt="banner" width="350" height="100" className="d-inline-block align-text-top" />
-          </Link>
-        </a>
+        <Link to={'/inicio'} className="navbar-brand">
+          <img src={banner} alt="banner" width="350" height="100" className="d-inline-block align-text-top" />
+        </Link>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -66,13 +59,13 @@ function Navbaremployee() {
               <Link className="nav-link me-5" aria-current="page" to="/contactanos">Clientes</Link>
             </li>
             <li className="nav-item dropdown me-5">
-              <a className="nav-link dropdown-toggle" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Mi Perfil
-              </a>
+              </Link>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="/configuracion">Configuración</a></li>
-                <li><hr className="dropdown-divider"></hr></li>
-                <li><a className="dropdown-item" href="javascript:void(0)" onClick={handleLogout}>Cerrar sesión</a></li>
+                <li><Link className="dropdown-item" to="/configuracion">Configuración</Link></li>
+                <li><hr className="dropdown-divider" /></li>
+                <li><a className="dropdown-item" href="#" onClick={handleLogout}>Cerrar sesión</a></li>
               </ul>
             </li>
           </ul>
