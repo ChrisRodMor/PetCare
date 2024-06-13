@@ -1,10 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { Container, Button, Col, Row } from 'react-bootstrap';
+import ClientCardProfile from './ClientCardProfile';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Navbarcliente from './Navbarcliente';
+import Navbaremployee from './Navbaremployee';
+import { AuthContext } from './AuthContext';
 
 function VerMascota() {
+    const { authData } = useContext(AuthContext);
     const { id } = useParams();
     const [mascota, setMascota] = useState(null);
+    const [vacunas, setVacuna] = useState(null);
+    const [currentVacunaIndex, setCurrentVacunaIndex] = useState(0);
 
     useEffect(() => {
         const fetchMascota = async () => {
@@ -16,6 +25,16 @@ function VerMascota() {
             }
         };
 
+        const fetchVacuna = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/vaccines/${id}`);
+                setVacuna(response.data.data); // Guardar los datos de la vacuna en el estado
+            } catch (error) {
+                console.error('Error fetching vaccine:', error);
+            }
+        };
+        
+        fetchVacuna();
         fetchMascota();
     }, [id]);
 
@@ -28,21 +47,91 @@ function VerMascota() {
         return <div>No se encontró el nombre de la mascota.</div>;
     }
 
+    const handleNextVacuna = () => {
+        if (currentVacunaIndex < vacunas.length - 1) {
+            setCurrentVacunaIndex(currentVacunaIndex + 1);
+        }
+    };
+
+    const handlePrevVacuna = () => {
+        if (currentVacunaIndex > 0) {
+            setCurrentVacunaIndex(currentVacunaIndex - 1);
+        }
+    };
+
+    if (vacunas.length === 0) {
+        return <div>Cargando vacunas...</div>; // Mostrar un mensaje de carga mientras se obtienen los datos
+    }
+
+    const vacunaActual = vacunas[currentVacunaIndex];
+
     return (
         <div>
-            <h1>{mascota.name}</h1>
-            <p>Edad: {mascota.age}</p>
-            <p>Género: {mascota.gender}</p>
-            <p>Tipo: {mascota.type_id}</p> {/* Aquí deberías mostrar el tipo de animal, tal vez necesites hacer una consulta adicional para obtener el nombre del tipo */}
-            <p>Raza: {mascota.breed_id}</p> {/* Aquí deberías mostrar la raza, tal vez necesites hacer una consulta adicional para obtener el nombre de la raza */}
-            <p>Descripción: {mascota.description}</p>
-            <p>Color: {mascota.color}</p>
-            <p>Peso: {mascota.weight} kg</p>
-            <p>Tamaño: {mascota.size}</p>
-            <p>Salud: {mascota.health}</p>
-            <p>Esterilizado: {mascota.sterilized}</p>
-            <img src={`http://127.0.0.1:8000/${mascota.file_path}`} alt={mascota.name} style={{ maxWidth: '100%', height: 'auto' }} />
+            {authData.type === 'employee' ? <Navbaremployee /> : <Navbarcliente />}
 
+            <Container className='col-12'>
+                <div className='mt-5 d-flex mb-5'>
+                    <div className='me-auto'>
+                        <h1 className="h1">Refugio</h1>
+                    </div>
+                </div>
+
+                <Row className='d-flex'>
+                    <Col md={3} className='me-5 mb-3'>
+                        <ClientCardProfile name={mascota.name} file_path={`http://127.0.0.1:8000/${mascota.file_path}`} />
+                        <Container className="bg-white p-5 rounded shadow">
+                            <div className="d-flex justify-content-between align-items-center mb-3">
+                                <p className="h3">Vacunas</p>
+                            </div>
+                            <div>
+                                <p>Marca: {vacunaActual.vaccine_brand}</p>
+                                <p>Tipo: {vacunaActual.vaccine_type}</p>
+                                <p>Lote: {vacunaActual.vaccine_batch}</p>
+                                <p>Fecha de Aplicación: {vacunaActual.application_date}</p>
+                                <p>Nombre del Doctor: {vacunaActual.doctor_name}</p>
+                                <p>Licencia del Doctor: {vacunaActual.doctor_license}</p>
+                            </div>
+
+                            <div>
+                                <Button variant="light" onClick={handlePrevVacuna} disabled={currentVacunaIndex === 0}>
+                                    &#8249; Anterior
+                                </Button>
+                                <Button variant="light" onClick={handleNextVacuna} disabled={currentVacunaIndex === vacunas.length - 1}>
+                                    Siguiente &#8250;
+                                </Button>
+                            </div>
+                        </Container>
+                    </Col>
+                    <Col md={8} className='mb-3'>
+                        <Container className="bg-white p-5 rounded shadow">
+                            
+                            <p class="h3">Descripcion detallada</p>
+
+                            <div className='mb-5'>
+                                <p className='lead'>ID: {mascota.id}</p>
+                                <p className='lead'>Especie: {mascota.type_name}</p>
+                                <p className='lead'>Raza: {mascota.breed_name}</p>
+                                <p className='lead'>Nombre: {mascota.name}</p>
+                                <p className='lead'>Sexo: {mascota.gender}</p>
+                                <p className='lead'>Esta esterilizado: {mascota.sterilized}</p>
+                                <p className='lead'>Fecha de Nacimiento: {mascota.birthdate}</p>
+                                <p className='lead'>edad: {mascota.age}</p>
+                                <p className='lead'>Color: {mascota.color}</p>
+                                <p className='lead'>Peso: {mascota.weight}</p>
+                                <p className='lead'>Tamaño: {mascota.size}</p>
+                                <p className='lead'>Salud: {mascota.health}</p>
+                                <p className='lead'>Descripcion: {mascota.description}</p>
+                            </div>
+
+                            
+                            <div className='d-flex justify-content-center'>
+                                <Link to='/adoptar'><Button type="button" variant="btn btn-outline-warning btn-block" className='me-5'>Regresar</Button></Link>
+                                <Button href = "https://docs.google.com/forms/d/e/1FAIpQLScl546kYHW1Jlz8lb2Fiaq74cIeLXiF2OEi6X0XszkyagsTTw/viewform?embedded=true" target="_blank" type="button" variant="warning">Adoptar</Button>
+                            </div>
+                        </Container>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }

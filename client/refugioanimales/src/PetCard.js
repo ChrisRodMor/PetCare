@@ -2,10 +2,10 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function PetCard({ name, image, linkTo }) {
+function PetCard({ name, image, id }) {
     return (
         <Card className="pet-card mb-3" style={{borderRadius: '21px'}}>
-            <Link to={`/adoptar/${linkTo}`}>
+            <Link to={`/adoptar/${id}`}>
                 <Card.Body 
                     className="d-flex justify-content-center align-items-center" 
                     style={{ 
