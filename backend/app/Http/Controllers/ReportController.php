@@ -12,7 +12,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $reports=Report::all();
+        return response()->json(['data' => $reports], 200);
     }
 
     /**
@@ -36,10 +37,27 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        // manda la informacion del reporte junto su reporte enlazado ()
+        
+        // Obtener el tipo de reporte
+        $typeReport = $report->type_report;
 
-        return response()->json(['data' => $report],200);
+        // Definir las relaciones a cargar según el tipo de reporte
+        $relations = [];
+        if ($typeReport === 'ADOPCION') {
+            $relations[] = 'adoptionReport';
+        } elseif ($typeReport === 'MASCOTA_PERDIDA') {
+            $relations[] = 'lostPetReport';
+        } elseif ($typeReport === 'MALTRATO') {
+            $relations[] = 'abuseReport';
+        }
+
+        // Cargar las relaciones correspondientes usando with()
+        $report = Report::with($relations)->find($report->id);
+
+        // Retornar una respuesta JSON con los datos del reporte y su información adicional
+        return response()->json(['data' => $report], 200);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -73,7 +91,15 @@ class ReportController extends Controller
         //
     }
 
-    public function getReports(Request $request){
-        // obtener los reportes del usuario junto con las relaiones
+    public function getReports(Request $request)
+    {
+        // Obtener el usuario autenticado
+        $user = $request->user();
+
+        // Obtener todos los reportes del usuario autenticado
+        $reports = $user->reports;
+
+        // Retornar una respuesta JSON con los reportes
+        return response()->json(['data' => $reports], 200);
     }
 }

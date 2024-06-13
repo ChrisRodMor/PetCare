@@ -5,10 +5,12 @@ use App\Http\Controllers\AdoptionReportController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\LostPetReportController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VaccineController;
+use App\Models\LostPetReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,9 +50,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     //reportes
     Route::post('/report-update-status/{report}',[ReportController::class, 'updateStatus']);
+    Route::get('/user-reports', [ReportController::class, 'getReports']);
+    Route::get('/reports', [ReportController::class, 'index']);
+    Route::get('/report/{report}', [ReportController::class, 'show']);
 
     Route::post('/store-abuse-report',[AbuseReportController::class,'store']);
 
     Route::post('/store-adoption-report',[AdoptionReportController::class,'store']);
+
+    Route::post('/store-lost-pet',[LostPetReportController::class,'store']);
+    Route::get('/lost-pets',[LostPetReportController::class,'index']);
+    Route::post('/lost-pet-status/{lostPetReport}',[LostPetReportController::class,'updateStatus']);
 
 });

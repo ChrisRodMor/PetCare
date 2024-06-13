@@ -20,6 +20,11 @@ class Breed extends Model
         return $this->hasMany(Animal::class);
     }
 
+    public function lostPetReports()
+    {
+        return $this->hasMany(LostPetReport::class);
+    }
+
     protected $fillable = [
         'name',
         'type_id'

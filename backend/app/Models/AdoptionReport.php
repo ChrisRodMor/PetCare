@@ -13,6 +13,11 @@ class AdoptionReport extends Model
     {
         return $this->belongsTo(Report::class);
     }
+
+    public function animal(): BelongsTo
+    {
+        return $this->belongsTo(Animal::class);
+    }
     protected $fillable = [
         'report_id',
         'animal_id',
