@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
 
-const ReportCard = () => {
-  const [report, setReport] = useState({ type: '', date: '', id: '' });
-
-  useEffect(() => {
-    // Reemplaza la URL con la de tu API
-    axios.get('https://api.tuservidor.com/reportes')
-      .then(response => {
-        setReport(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-      });
-  }, []);
+const ReportCard = ({ type, description, status, createdAt, id }) => {
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Revisando':
+        return 'warning';
+      case 'Avanzando':
+        return 'info';
+      case 'Terminado':
+        return 'success';
+      default:
+        return 'secondary';
+    }
+  };
 
   return (
-    <div className='card border-success' style={{ maxWidth: '18rem' }}>
-      <div className='card-header bg-transparent border-success'>{report.type}</div>
-      <div className='card-body text-success'>
-        <h5 className='card-title'>{report.date}</h5>
-        <p className='card-text'>ID: {report.id}</p>
+    <div className={`card border-${getStatusColor(status)}`} style={{ maxWidth: '18rem', margin: '1rem' }}>
+      <div className={`card-header bg-${getStatusColor(status)} text-${getStatusColor(status) === 'warning' ? 'black' : 'white'}`}>
+        {type}
+      </div>
+      <div className='card-body' style={{ color: 'black' }}>
+        <h5 className='card-title'>{new Date(createdAt).toLocaleDateString()}</h5>
+        <p className='card-text'>{description}</p>
+        <p className='card-text'>Status: {status}</p>
+        <p className='card-text'>ID: {id}</p>
       </div>
     </div>
   );

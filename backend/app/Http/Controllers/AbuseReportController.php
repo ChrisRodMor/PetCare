@@ -41,7 +41,7 @@ class AbuseReportController extends Controller
         ]);
 
         // Crear un nuevo reporte de abuso relacionado
-        $reportAbuse = $report->abuseReports()->create([
+        $reportAbuse = $report->abuseReport()->create([
             'direction_event' => $request->input('direction_event'),
             'date_event' => $request->input('date_event'),
             'hour_event' => $request->input('hour_event'),

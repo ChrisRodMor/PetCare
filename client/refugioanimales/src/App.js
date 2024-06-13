@@ -14,6 +14,7 @@ import Clientes from './Clientes';
 import Donaciones from './Donaciones';
 import Configuracion from './Configuracion';
 import NuevoReporte from './NuevoReporte';
+import ReporteAdopcion from './ReporteAdopcion';
 import ProtectedRoute from './ProtectedRoute';
 import { AuthProvider } from './AuthContext';
 
@@ -31,6 +32,7 @@ function App() {
                   <Route path="/adoptar/:id" element={<ProtectedRoute element={<VerMascota />} />} />
                   <Route path="/reportes" element={<ProtectedRoute element={<Reportes />} />} />
                   <Route path="/nuevoreporte" element={<ProtectedRoute element={<NuevoReporte />} />} />
+                  <Route path="/reporteadopcion" element={<ProtectedRoute element={<ReporteAdopcion />} />} />
                   <Route path="/contactanos" element={<ProtectedRoute element={<Contactanos />} />} />
                   <Route path="/clientes" element={<ProtectedRoute element={<Clientes />} />} />
                   <Route path="/clientes/:id" element={<ProtectedRoute element={<VerCliente />} />} />
